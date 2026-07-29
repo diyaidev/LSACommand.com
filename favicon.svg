@@ -1,0 +1,10 @@
+<svg width="96" height="112" viewBox="0 0 96 112" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LSA Command favicon</title>
+  <desc id="desc">Shield icon with an upward arrow, turquoise speed lines, and orange dot.</desc>
+  <path d="M48 6L85 21V52C85 78.5 69 99 48 106C27 99 11 78.5 11 52V21L48 6Z" fill="#FFFFFF" stroke="#07243A" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M23 60C34 47 50 42 71 46" stroke="#00AFC6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M22 73C37 62 57 61 75 68" stroke="#38D9A9" stroke-width="7" stroke-linecap="round"/>
+  <path d="M35 42L48 28L61 42" stroke="#07243A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 29V72" stroke="#07243A" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="48" cy="76" r="6.5" fill="#FF7A1A"/>
+</svg>
