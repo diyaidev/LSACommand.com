@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPAA Compliance | LSA Command</title>
+    <meta name="description" content="HIPAA Compliance information for LSA Command, describing our privacy-minded approach for protected health information.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#050505',
+                        electric: '#00F5D4',
+                        space: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
+        h1,h2,h3,h4 { font-family: 'Outfit', sans-serif; }
+        .glass { background: rgba(28, 37, 65, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .text-neon { color: #00F5D4; }
+        .bg-neon { background-color: #00F5D4; }
+        .border-neon { border-color: #00F5D4; }
+        .theme-light { background: #f6fbff; color: #0b1f33; }
+        .theme-light .glass { background: rgba(255,255,255,0.88) !important; border-color: rgba(7,36,58,0.10) !important; box-shadow: 0 18px 55px rgba(7,36,58,0.08); }
+        .theme-light .text-neon { color: #008da1 !important; }
+        .theme-light .bg-neon { background-color: #04d9eb !important; }
+    </style>
+</head>
+
+<body class="theme-light overflow-x-hidden selection:bg-electric selection:text-midnight">
+    <header class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="h-14 w-auto relative flex items-center">
+                    <img src="lsa-command-logo.svg" alt="LSA Command Logo" class="h-full w-auto object-contain">
+                </div>
+                <div class="leading-none hidden sm:block">
+                    <p class="font-black uppercase tracking-tight text-lg">LSA Command</p>
+                    <p class="text-neon text-[10px] font-black uppercase tracking-[0.24em]">Speed-to-Lead AI</p>
+                </div>
+            </div>
+            <a href="sms:+19897124370" class="hidden sm:inline-flex bg-neon text-midnight font-bold px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300">
+                Text Us
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-28 pb-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <section class="glass rounded-3xl p-10 border border-neon/20 shadow-2xl">
+                    <p class="text-sm uppercase tracking-[0.24em] text-neon mb-4">HIPAA Compliance</p>
+                    <h1 class="text-4xl font-black mb-6">Privacy-minded handling of sensitive information</h1>
+                    <p class="text-lg text-gray-700 leading-8">This page describes our approach to protecting sensitive information, including how we handle personal and health-related data responsibly.</p>
+                </section>
+
+                <section class="glass rounded-3xl p-10 border border-neon/20 shadow-2xl space-y-6">
+                    <h2 class="text-2xl font-bold text-midnight">Our approach to security</h2>
+                    <p class="text-gray-700 leading-7">We implement administrative, technical, and physical safeguards to protect data from unauthorized access, disclosure, alteration, and destruction.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Sensitive information</h2>
+                    <p class="text-gray-700 leading-7">While LSA Command is not a healthcare provider, we take extra care with any sensitive information that is shared with us. Access is limited to authorized personnel only.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Data minimization and retention</h2>
+                    <p class="text-gray-700 leading-7">We collect only the information necessary to respond to your request or provide services. We retain data only as long as required for the purpose and in accordance with our privacy practices.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Third-party partners</h2>
+                    <p class="text-gray-700 leading-7">We may work with trusted service providers for hosting, analytics, and communications. These partners are expected to maintain privacy and security measures consistent with applicable standards.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Not legal or compliance advice</h2>
+                    <p class="text-gray-700 leading-7">This page is informational only and does not constitute legal advice or guarantee compliance with HIPAA or any other law. HIPAA obligations depend on the specific business relationship and the nature of the information processed.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Global applicability</h2>
+                    <p class="text-gray-700 leading-7">Although HIPAA is a U.S. law, our principles of data protection apply to all visitors. We strive to handle sensitive information with care regardless of your location.</p>
+
+                    <h2 class="text-2xl font-bold text-midnight">Contact</h2>
+                    <p class="text-gray-700 leading-7">For privacy questions or to discuss how we handle sensitive information, contact us at <a href="sms:+19897124370" class="text-neon font-semibold">989-712-4370</a>.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="privacy-policy.html" class="text-sm text-neon hover:underline">Privacy Policy</a>
+                <a href="terms-of-service.html" class="text-sm text-neon hover:underline">Terms of Service</a>
+                <a href="cookie-policy.html" class="text-sm text-neon hover:underline">Cookie Policy</a>
+                <a href="gdpr.html" class="text-sm text-neon hover:underline">GDPR</a>
+                <a href="hipaa-compliance.html" class="text-sm text-neon hover:underline">HIPAA Compliance</a>
+            </div>
+            <div class="flex items-center justify-center space-x-2 mb-8">
+                <div class="h-16 w-auto relative opacity-90">
+                    <img src="lsa-command-logo.svg" alt="LSA Command Logo" class="h-full w-auto object-contain">
+                </div>
+            </div>
+            <p>© 2026 LSA Command. All rights reserved. Google and Google Local Service Ads are trademarks of Google LLC. We are not affiliated with Google.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
