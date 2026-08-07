@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/discovery",
+      "destination": "https://ryan.diyai.ai/30-min-discovery-call",
+      "permanent": false
+    },
+    {
+      "source": "/discovery/",
+      "destination": "https://ryan.diyai.ai/30-min-discovery-call",
+      "permanent": false
+    }
+  ]
+}
