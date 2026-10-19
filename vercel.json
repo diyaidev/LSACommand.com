@@ -11,5 +11,11 @@
       "destination": "https://ryan.diyai.ai/30-min-discovery-call",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/affiliate/signup",
+      "destination": "/affiliate/signup/index.html"
+    }
   ]
 }
