@@ -7,7 +7,10 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-CSQW3SMTL4');
+        gtag('config', 'G-CSQW3SMTL4', {
+            page_location: window.location.origin + window.location.pathname,
+            page_referrer: document.referrer.split(/[?#]/)[0]
+        });
     </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
