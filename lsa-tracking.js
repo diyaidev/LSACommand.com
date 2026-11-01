@@ -1,10 +1,17 @@
 /*
  * LSA Command conversion tracking (GA4 G-CSQW3SMTL4).
  *
+ * Shared booking convention for every page on the site:
+ *   - Every on-site "book a call" CTA links straight to https://ryan.diyai.ai/30-min-discovery-call
+ *     and carries data-cta="<where-on-the-page>". Pages do NOT add their own onclick/listener for it.
+ *   - book_meeting_click fires here, once per click, for any booking link.
+ *   - book_meeting fires on /booked/ (the calendar's after-booking redirect), not here.
+ *   - /discovery is the off-site short link (YouTube, email); it fires its own book_meeting_click.
+ *
  * Events sent:
- *   generate_lead  – a visitor taps a text (sms:) or call (tel:) link. params: method, link_location
- *   begin_booking  – a visitor clicks any "book a call" link.            params: link_location
- *   book_meeting   – fired by /booked/ (the booking tool's thank-you redirect), not here.
+ *   generate_lead       – a visitor taps a text (sms:) or call (tel:) link. params: method, cta_location
+ *   book_meeting_click  – a visitor clicks any "book a call" link.            params: cta_location
+ *   (both also send link_location with the same value, for reports built on the earlier name)
  *
  * Booking links to the external calendar also carry the visit's first-touch UTMs (when the
  * visitor arrived on a UTM-tagged link) so the calendar's contact record keeps the campaign.
@@ -20,6 +27,7 @@
 
   function send(name, params) {
     if (typeof window.gtag !== 'function') return;
+    params.link_location = params.cta_location;
     params.page_path = window.location.pathname;
     params.transport_type = 'beacon';
     window.gtag('event', name, params);
@@ -62,12 +70,12 @@
     var where = locationOf(link);
 
     if (href.indexOf('sms:') === 0) {
-      send('generate_lead', { method: 'sms', link_location: where });
+      send('generate_lead', { method: 'sms', cta_location: where });
     } else if (href.indexOf('tel:') === 0) {
-      send('generate_lead', { method: 'call', link_location: where });
+      send('generate_lead', { method: 'call', cta_location: where });
     } else if (BOOKING_PATTERN.test(href)) {
       decorateBookingLink(link);
-      send('begin_booking', { link_location: where });
+      send('book_meeting_click', { cta_location: where });
     }
   }, true);
 })();
