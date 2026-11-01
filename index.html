@@ -9,15 +9,18 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-CSQW3SMTL4', {
-            page_location: window.location.origin + window.location.pathname,
-            page_referrer: document.referrer.split(/[?#]/)[0]
+            // Keep campaign + ad-click params (UTMs, gclid) so GA4 can attribute traffic; drop everything else.
+            page_location: (function () { var u = new URL(window.location.href), keep = new URLSearchParams(); ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'gclid', 'gbraid', 'wbraid'].forEach(function (k) { var v = u.searchParams.get(k); if (v) keep.set(k, v); }); var q = keep.toString(); return u.origin + u.pathname + (q ? '?' + q : ''); })(),
+            page_referrer: document.referrer.split(/[?#]/)[0],
+            linker: { domains: ['lsacommand.com', 'ryan.diyai.ai'] }
         });
     </script>
+    <script src="/lsa-tracking.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LSA Command | Google Local Services Ads Software & AI Answering</title>
     <meta name="description"
-        content="Google Local Services Ads software for contractors: AI answers every LSA call and message, disputes bad leads, targets your service area, and gets more reviews. Call or text 989-712-4370.">
+        content="Google Local Services Ads software for contractors: AI answers every LSA call and message, flags bad leads for credit, targets your service area, and gets more reviews. Call or text 989-712-4370.">
     <link rel="canonical" href="https://lsacommand.com/">
     <script type="application/ld+json">
 {
@@ -364,10 +367,11 @@
             </div>
             <nav class="flex items-center gap-5 sm:gap-7" aria-label="Main navigation">
                 <a href="#explore" class="hidden md:inline font-bold hover:text-neon transition-colors">Features</a>
-                <a href="/blog/" class="font-bold hover:text-neon transition-colors">Blog</a>
-                <a href="sms:+19897124370"
+                <a href="/agencies/" data-cta="nav-agencies" class="font-bold hover:text-neon transition-colors">For Agencies</a>
+                <a href="/blog/" class="hidden sm:inline font-bold hover:text-neon transition-colors">Blog</a>
+                <a href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="nav-book"
                     class="hidden sm:inline-flex bg-neon text-midnight font-bold px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
-                    Text Us
+                    Book a Call
                 </a>
             </nav>
         </div>
@@ -382,20 +386,28 @@
                         class="inline-block px-4 py-1.5 rounded-full bg-electric/10 border border-electric/20 text-electric text-sm font-bold tracking-widest uppercase">
                         The 4-R Framework for Google LSA
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-black leading-tight">
+                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight">
                         Google Local Services Ads Software That Captures Every Lead.
                     </h1>
                     <p class="text-xl text-gray-400 max-w-xl">
-                        LSA Command combines faster response, smarter service-area control, review follow-up, and refund
-                        tracking so contractors can turn more Google Local Services leads into booked jobs.
+                        Every LSA call answered in under 30 seconds, every message reply verified, and every lead rated back
+                        to Google. Built for contractors, and for the agencies that run LSA for them.
                     </p>
                     <div
                         class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
-                        <a href="sms:+19897124370"
+                        <a href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="hero-book"
                             class="px-8 py-4 bg-neon text-midnight font-black text-lg rounded-xl hover:translate-y-[-2px] hover:shadow-xl transition-all duration-300">
+                            Book a 30-Min Walkthrough
+                        </a>
+                        <a href="sms:+19897124370" data-cta="hero-text"
+                            class="px-8 py-4 border border-electric/30 text-electric font-black text-lg rounded-xl hover:translate-y-[-2px] transition-all duration-300">
                             Text 989-712-4370
                         </a>
                     </div>
+                    <a href="/agencies/" data-cta="hero-agencies"
+                        class="inline-flex items-center gap-2 text-base font-bold text-electric hover:underline">
+                        Run LSA for multiple clients? See the agency setup <span aria-hidden="true">&rarr;</span>
+                    </a>
                 </div>
                 <div class="w-full max-w-xl mx-auto lg:max-w-none">
                     <div class="flex items-center justify-between px-2 mb-3">
@@ -476,7 +488,7 @@
                     </a>
                     <a href="#refunds" class="glass rounded-2xl p-5 border border-white/10 flex items-start gap-3 hover:scale-[1.02] transition-transform">
                         <span class="text-neon font-black mt-0.5">✓</span>
-                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">Automatic Refunds On Bad Leads</strong>Spam, wrong-number and out-of-area disputes filed for you — money back on autopilot.</span>
+                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">Automatic Refunds On Bad Leads</strong>Every lead reviewed and rated back to Google, spam and invalid leads flagged for credit, and every credit tracked.</span>
                     </a>
                     <a href="#reviews" class="glass rounded-2xl p-5 border border-white/10 flex items-start gap-3 hover:scale-[1.02] transition-transform">
                         <span class="text-neon font-black mt-0.5">✓</span>
@@ -494,15 +506,15 @@
                         <span class="text-neon font-black mt-0.5">✓</span>
                         <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">Every Result Counted, Not Estimated</strong>Hours saved, robocalls blocked, messages recovered — exact numbers in your dashboard.</span>
                     </a>
-                    <div class="glass rounded-2xl p-5 border border-white/10 flex items-start gap-3 sm:col-span-2 lg:col-span-3">
+                    <a href="/agencies/" data-cta="features-agencies" class="glass rounded-2xl p-5 border border-neon/40 flex items-start gap-3 sm:col-span-2 lg:col-span-3 hover:border-neon transition-colors">
                         <span class="text-neon font-black mt-0.5">✓</span>
-                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">White-Label Ready For Agencies</strong>Run the whole system under your own brand — we transfer leads to you and your clients.</span>
-                    </div>
+                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">White-Label Ready For Agencies &rarr;</strong>Run the whole system under your own brand across every client account — we transfer leads to you and your clients. See the agency setup.</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-midnight border-y border-white/5 relative overflow-hidden">
+        <section id="case-studies" class="py-24 bg-midnight border-y border-white/5 relative overflow-hidden">
             <div class="absolute inset-0 bg-electric/5 blur-[120px] rounded-full"></div>
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto text-center mb-14">
@@ -587,6 +599,10 @@
                         </div>
                     </article>
                 </div>
+                <p class="text-center mt-12">
+                    <a href="/case-studies/"
+                        class="inline-block px-8 py-4 rounded-full border border-neon/40 text-neon font-black uppercase tracking-widest text-sm hover:bg-neon/10 transition-colors">Agency owners: see the month-by-month data &amp; playbook &rarr;</a>
+                </p>
             </div>
         </section>
 
@@ -621,8 +637,8 @@
                     <div class="glass p-8 rounded-2xl border-b-4 border-b-neon">
                         <div class="text-5xl font-black text-white/10 mb-4 tracking-tighter">04.</div>
                         <h3 class="text-2xl font-black mb-3">REFUNDS</h3>
-                        <p class="text-gray-400 text-sm">The "Refund Engine" automatically identifies bad leads and
-                            submits disputes, putting up to 10% of your ad spend back in your pocket.</p>
+                        <p class="text-gray-400 text-sm">The "Refund Engine" reviews every lead, rates it back to Google,
+                            flags the spam and invalid leads that qualify for a credit, and tracks every dollar credited.</p>
                     </div>
                 </div>
             </div>
@@ -1273,10 +1289,11 @@
         <section id="refunds" class="py-24 bg-midnight relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-black mb-4">Automated <span class="text-neon">LSA Lead Disputes</span> &amp; Refunds</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Our AI monitors every call, identifies unqualified leads,
-                        and automatically clawbacks your ad spend. We optimize Lead Quality so you only pay for
-                        customers.</p>
+                    <h2 class="text-4xl lg:text-5xl font-black mb-4">Automated <span class="text-neon">LSA Lead Credits</span> &amp; Quality Ratings</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Our AI reviews every call, rates every lead back to Google, and
+                        flags spam and invalid leads that qualify for a credit, then tracks what Google actually credits.
+                        Google no longer credits out-of-area or wrong-job-type leads, so we tighten your service area and
+                        job types to stop paying for them in the first place.</p>
                 </div>
 
                 <div class="max-w-5xl mx-auto relative group">
@@ -1742,9 +1759,9 @@
                         <p class="text-xl font-bold text-gray-400 mb-10 italic">"This isn't just a dashboard update.
                             It's the difference between a <span class="text-red-500 line-through decoration-2">missed
                                 opportunity</span> and a <span class="text-emerald-400">booked job</span>."</p>
-                        <a href="sms:+19897124370"
+                        <a href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="mid-book"
                             class="group relative inline-flex items-center gap-3 px-10 py-5 bg-neon text-midnight font-black rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_40px_rgba(0,245,212,0.3)]">
-                            <span class="relative z-10 uppercase tracking-widest text-sm text-center">Text Us About LSA Command</span>
+                            <span class="relative z-10 uppercase tracking-widest text-sm text-center">See It On Your Account: Book 30 Min</span>
                             <svg class="w-6 h-6 relative z-10 transition-transform group-hover:translate-x-1"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-width="3" stroke-linecap="round"
@@ -2164,7 +2181,7 @@
                     <div class="flex flex-col lg:flex-row items-center gap-16">
                         <div class="lg:w-1/2 space-y-6">
                             <h2 class="text-4xl lg:text-6xl font-black">Ready to <span class="text-neon">Fix Your LSA Lead Response?</span></h2>
-                            <p class="text-xl text-gray-400">Call or text us and we will talk through your Google Local Services response flow, service-area setup, and refund opportunities.</p>
+                            <p class="text-xl text-gray-400">Book a 30-minute walkthrough with Ryan. Bring one LSA account (yours or a client's) and we will show you exactly where leads are slipping: response flow, service area, and lead credits.</p>
                             <ul class="space-y-4">
                                 <li class="flex items-center space-x-3">
                                     <span class="text-neon w-6 h-6 rounded-full bg-neon/10 flex items-center justify-center">✔</span>
@@ -2185,16 +2202,18 @@
                                 <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black uppercase tracking-widest text-xs px-6 py-2 rounded-full shadow-xl">
                                     DIRECT RESPONSE
                                 </div>
-                                <h3 class="text-3xl font-black text-center mb-3 mt-4">Text LSA Command</h3>
-                                <a href="sms:+19897124370" class="text-center text-5xl font-black text-neon tracking-tight hover:text-white transition-colors">989-712-4370</a>
-                                <p class="text-center text-gray-400 mt-5 mb-8">No form. No waiting. Reach us directly and we will help you decide the next best move.</p>
+                                <h3 class="text-3xl font-black text-center mb-3 mt-4">Book a 30-Min Walkthrough</h3>
+                                <p class="text-center text-gray-400 mb-6">Pick a time on Ryan's calendar. 30 minutes, on a live LSA account, no passwords needed.</p>
+                                <a href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="footer-book" class="block bg-neon text-midnight font-black py-5 rounded-xl text-xl text-center hover:scale-105 transition-transform uppercase tracking-widest mb-6">Pick a Time</a>
+                                <p class="text-center text-gray-400 mb-3">Rather talk now? Call or text</p>
+                                <a href="sms:+19897124370" data-cta="footer-text-number" class="text-center text-4xl font-black text-neon tracking-tight hover:text-white transition-colors mb-6">989-712-4370</a>
 
                                 <div class="grid sm:grid-cols-2 gap-4">
-                                    <a href="tel:+19897124370"
-                                        class="bg-neon text-midnight font-black py-4 rounded-xl text-lg text-center hover:scale-105 transition-transform uppercase tracking-widest">
+                                    <a href="tel:+19897124370" data-cta="footer-call"
+                                        class="bg-white text-midnight font-black py-4 rounded-xl text-lg text-center hover:scale-105 transition-transform uppercase tracking-widest">
                                         Call Now
                                     </a>
-                                    <a href="sms:+19897124370"
+                                    <a href="sms:+19897124370" data-cta="footer-text"
                                         class="bg-white text-midnight font-black py-4 rounded-xl text-lg text-center hover:scale-105 transition-transform uppercase tracking-widest">
                                         Text Us
                                     </a>
@@ -2209,6 +2228,7 @@
     <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
         <div class="container mx-auto px-6">
             <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="/agencies/" class="text-sm text-neon hover:underline">For Agencies</a>
                 <a href="/blog/" class="text-sm text-neon hover:underline">Blog</a>
                 <a href="/lsa-ai-call-answering/" class="text-sm text-neon hover:underline">AI Call Answering</a>
                 <a href="/lsa-message-leads/" class="text-sm text-neon hover:underline">Message Lead Response</a>
@@ -2238,9 +2258,12 @@
         </div>
     </footer>
     <!-- Sticky Mobile CTA -->
-    <div class="fixed bottom-0 left-0 w-full z-50 glass border-t border-white/10 p-4 lg:hidden animate-pulse-slow">
-        <a href="sms:+19897124370" class="block w-full text-center bg-neon text-midnight font-black py-4 rounded-xl shadow-[0_0_20px_rgba(0,245,212,0.4)] uppercase tracking-widest text-sm">
-            Text 989-712-4370
+    <div class="fixed bottom-0 left-0 w-full z-50 glass border-t border-white/10 p-3 lg:hidden grid grid-cols-[1fr_auto] gap-3">
+        <a href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="sticky-book" class="block text-center bg-neon text-midnight font-black py-4 rounded-xl shadow-[0_0_20px_rgba(0,245,212,0.4)] uppercase tracking-widest text-sm">
+            Book a 30-Min Call
+        </a>
+        <a href="sms:+19897124370" data-cta="sticky-text" class="block text-center bg-white text-midnight border border-white/10 font-black py-4 px-5 rounded-xl uppercase tracking-widest text-sm">
+            Text Us
         </a>
     </div>
 </body>
