@@ -8,10 +8,13 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-CSQW3SMTL4', {
-            page_location: window.location.origin + window.location.pathname,
-            page_referrer: document.referrer.split(/[?#]/)[0]
+            // Keep campaign + ad-click params (UTMs, gclid) so GA4 can attribute traffic; drop everything else.
+            page_location: (function () { var u = new URL(window.location.href), keep = new URLSearchParams(); ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'gclid', 'gbraid', 'wbraid'].forEach(function (k) { var v = u.searchParams.get(k); if (v) keep.set(k, v); }); var q = keep.toString(); return u.origin + u.pathname + (q ? '?' + q : ''); })(),
+            page_referrer: document.referrer.split(/[?#]/)[0],
+            linker: { domains: ['lsacommand.com', 'ryan.diyai.ai'] }
         });
     </script>
+    <script src="/lsa-tracking.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Google Local Services Ads Blog: Guides for Contractors & Agencies | LSA Command</title>
@@ -54,6 +57,9 @@
     </article>
     <div class="chips" role="group" aria-label="Filter guides by topic"><button class="chip active" data-filter="all" aria-pressed="true">All guides</button><button class="chip" data-filter="Contractor guides" aria-pressed="false">Contractor guides</button><button class="chip" data-filter="LSA updates" aria-pressed="false">LSA updates</button><button class="chip" data-filter="Agency guides" aria-pressed="false">Agency guides</button></div>
     <section class="post-grid" aria-label="All guides">
+<article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/local-services-ads-not-showing/">Local Services Ads Not Showing? Work Through This Checklist</a></h3><p>When a client says “our Google ads disappeared,” check status, verification, schedule, billing, budget, service area and rank in this order before touching bids.</p><p class="card-meta"><time datetime="2026-11-01">November 1, 2026</time> · 8 min read</p></article>
+<article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/local-services-ads-background-check-verification/">Google Local Services Ads Background Check and Verification: The Agency Checklist</a></h3><p>Background checks, ID, D-U-N-S, insurance, licenses and the Business Profile link: what Google checks, who has to do each step, and why client approvals stall.</p><p class="card-meta"><time datetime="2026-11-01">November 1, 2026</time> · 8 min read</p></article>
+<article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/local-services-ads-manager-account/">How to Manage Client Local Services Ads From a Manager Account</a></h3><p>Link client LSA accounts to your manager account, pick the right access level, settle ownership and billing in writing, and get ready for the move into Google Ads.</p><p class="card-meta"><time datetime="2026-11-01">November 1, 2026</time> · 7 min read</p></article>
 <article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/lsa-crm-integration-agencies/">Connecting Google Local Services Ads to Customer Relationship Management Software</a></h3><p>Evaluate account mapping, duplicate events, historical imports and human handoffs before trusting an LSA connection across client accounts.</p><p class="card-meta"><time datetime="2026-10-31">October 31, 2026</time> · 9 min read</p></article>
 <article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/lsa-reporting-software-agencies/">How to Choose LSA Reporting Software for Agencies</a></h3><p>An agency report should explain what happened after the lead arrived. Use this checklist to evaluate the numbers, outcomes, and feedback behind the dashboard.</p><p class="card-meta"><time datetime="2026-10-26">October 26, 2026</time> · 5 min read</p></article>
 <article class="post-card" data-cat="Agency guides"><p class="tag">Agency guides</p><h3><a href="/blog/multi-account-lsa-software-agencies/">How to Choose LSA Software for Multiple Client Accounts</a></h3><p>A successful single-account demo does not prove a tool fits your agency portfolio. Test client separation, account mapping, and rollout controls before expanding.</p><p class="card-meta"><time datetime="2026-10-26">October 26, 2026</time> · 5 min read</p></article>
@@ -70,7 +76,7 @@
   <footer class="site-footer"><div class="container">
     <nav aria-label="Features"><a href="/lsa-ai-call-answering/">AI call answering</a><a href="/lsa-message-leads/">Message lead response</a><a href="/lsa-lead-disputes/">Lead disputes &amp; credits</a><a href="/lsa-service-area/">Service area targeting</a><a href="/lsa-reviews/">Review generation</a></nav>
     <nav aria-label="Industries"><a href="/industries/hvac/">HVAC</a><a href="/industries/plumbers/">Plumbers</a><a href="/industries/roofers/">Roofers</a><a href="/industries/electricians/">Electricians</a><a href="/industries/pool-contractors/">Pool contractors</a></nav>
-    <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/support.html">Support</a><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms of Service</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/gdpr.html">GDPR</a><a href="/hipaa-compliance.html">HIPAA Compliance</a></nav>
+    <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/agencies/">For agencies</a><a href="/blog/">Blog</a><a href="/support.html">Support</a><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms of Service</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/gdpr.html">GDPR</a><a href="/hipaa-compliance.html">HIPAA Compliance</a></nav>
     <p>© 2026 LSA Command. All rights reserved. Google and Google Local Service Ads are trademarks of Google LLC. We are not affiliated with Google.</p>
   </div></footer>
   <script>
