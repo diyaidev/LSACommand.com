@@ -8,10 +8,13 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-CSQW3SMTL4', {
-            page_location: window.location.origin + window.location.pathname,
-            page_referrer: document.referrer.split(/[?#]/)[0]
+            // Keep campaign + ad-click params (UTMs, gclid) so GA4 can attribute traffic; drop everything else.
+            page_location: (function () { var u = new URL(window.location.href), keep = new URLSearchParams(); ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'gclid', 'gbraid', 'wbraid'].forEach(function (k) { var v = u.searchParams.get(k); if (v) keep.set(k, v); }); var q = keep.toString(); return u.origin + u.pathname + (q ? '?' + q : ''); })(),
+            page_referrer: document.referrer.split(/[?#]/)[0],
+            linker: { domains: ['lsacommand.com', 'ryan.diyai.ai'] }
         });
     </script>
+    <script src="/lsa-tracking.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LSA to Performance Max Migration Checklist for Agencies | LSA Command</title>
@@ -88,7 +91,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="LSA Command home"><img src="/lsa-command-logo.svg" alt="LSA Command" width="720" height="240"></a>
-      <nav aria-label="Main navigation"><a href="/#everything">Features</a><a href="/blog/">Blog</a><a href="/support.html">Support</a><a class="button" href="https://ryan.diyai.ai/30-min-discovery-call" data-ga-event="book_meeting_click" data-ga-location="header">Book a walkthrough</a></nav>
+      <nav aria-label="Main navigation"><a href="/#everything">Features</a><a href="/blog/">Blog</a><a href="/support.html">Support</a><a class="button" href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="nav-book">Book a walkthrough</a></nav>
     </div>
   </header>
   <main id="main" class="container">
@@ -100,7 +103,7 @@
         <p class="lede">Google is moving every Local Services Ads account into Google Ads as Performance Max campaigns with pay-per-lead goals. This is the checklist to run across every client account: before, during and after migration, bidding, budgets, lead rating, the missed-call billing audit, reporting changes and what to tell the client.</p>
         <div class="download">
           <a class="button" href="lsa-pmax-migration-checklist.pdf" download data-ga-event="checklist_download" data-ga-location="page_header">Download the PDF checklist</a>
-          <a class="button secondary" href="/discovery" data-ga-event="book_meeting_click" data-ga-location="page_header">Book a 30-min call</a>
+          <a class="button secondary" href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="page-header-book">Book a 30-min call</a>
           <span class="note">2 pages, print-ready, with a 10-client tracker grid. No email required.</span>
         </div>
       </header>
@@ -112,10 +115,10 @@
 <p>For the full walkthrough behind each step, read <a href="/blog/lsa-performance-max-migration-agencies/">Google moved LSA into Performance Max: what agencies must do now</a> and <a href="/blog/lsa-missed-call-charges/">Google now charges for missed calls</a>.</p>
 <h2 id="before"><span class="num">01</span> Before migration</h2>
 <p>For every client that hasn’t moved yet.</p>
-<ul class="checklist"><li><b>Tracker row per client:</b> category, storefront or service-area, migration wave, migrated yet (Y/N).</li><li><b>Know the wave.</b> Aug 2026: select US storefront home services (plumbing, HVAC, electrical, roofing, pest control and similar). Late 2026: service-area businesses without a storefront, and accounts with custom bidding or booking setups. 2027: non-US accounts and all remaining categories.</li><li><b>Find the account administrator.</b> Google emails the admin 14 days before migration, then a final reminder 7 days later. Not an inbox you watch? Get added or set up forwarding.</li><li><b>Archive performance history now.</b> Impressions, clicks, weekly spend and ad-level reports don’t transfer (lead history does). Save 12 months by month: leads, charged vs. credited, cost per lead, spend.</li><li><b>Record current settings:</b> weekly budget, bid mode and max cost per lead by category, service types, service areas, hours, ad schedule.</li><li><b>Decide campaign splits.</b> Per-category targets merge into one campaign-level target. Clients with very different job values need separate campaigns to keep separate targets.</li><li><b>Replace the BBB callout</b> with at least 6 structured callouts (hours, specialties, payment methods).</li><li><b>Put account ownership in writing:</b> who owns the LSA account, and what happens to it if the client leaves.</li></ul>
+<ul class="checklist"><li><b>Tracker row per client:</b> category, storefront or service-area, migration wave, migrated yet (Y/N).</li><li><b>Know the wave.</b> Aug 2026: select US home and storefront service businesses (plumbing, HVAC, electrical, roofing, pest control and similar). Late 2026: service-area businesses without a storefront, and accounts with custom bidding or booking setups. 2027: non-US accounts and all remaining categories.</li><li><b>Find the account administrator.</b> Google emails the admin 14 days before migration, then a final reminder 7 days later. Not an inbox you watch? Get added or set up forwarding.</li><li><b>Archive performance history now.</b> Impressions, clicks, weekly spend and ad-level reports don’t transfer (lead history does). Save 12 months by month: leads, charged vs. credited, cost per lead, spend.</li><li><b>Record current settings:</b> weekly budget, bid mode and max cost per lead by category, service types, service areas, hours, ad schedule.</li><li><b>Decide campaign splits.</b> Per-category targets merge into one campaign-level target. Clients with very different job values need separate campaigns to keep separate targets.</li><li><b>Replace the BBB callout</b> with at least 6 structured callouts (hours, specialties, payment methods).</li><li><b>Put account ownership in writing:</b> who owns the LSA account, and what happens to it if the client leaves.</li></ul>
 <h2 id="budgets"><span class="num">02</span> Budgets</h2>
 <p class="callout"><b>Example:</b> $2,100/week ÷ 7 = $300/day × 30.4 = about $9,120/month cap. Same spend, different display.</p>
-<ul class="checklist"><li><b>Convert every budget.</b> Weekly ÷ 7 = daily average. Monthly cap = daily × 30.4.</li><li><b>Flag clients who hit the monthly max.</b> Once it’s reached, ads stop showing for the rest of the month unless the budget changes.</li><li><b>Send the budget note before the client logs in</b> (script in section 08).</li></ul>
+<ul class="checklist"><li><b>Convert every budget.</b> Weekly ÷ 7 = daily average. Monthly cap = daily × 30.4.</li><li><b>Flag clients who hit the monthly max.</b> Google won’t charge past it that month, so leads can dry up until the month resets or the budget changes.</li><li><b>Send the budget note before the client logs in</b> (script in section 08).</li></ul>
 <h2 id="bidding"><span class="num">03</span> Bidding</h2>
 <p>Manual bidding and max cost per lead are gone. Campaigns default to Maximize Conversions.</p>
 <div class="table-wrap"><table class="compare"><thead><tr><th scope="col">Account</th><th scope="col">Bidding call</th></tr></thead><tbody>
@@ -137,7 +140,7 @@
 <h2 id="client-comms"><span class="num">08</span> Client communication</h2>
 <ul class="checklist"><li><b>2 weeks out:</b> “Google is moving your Local Services Ads into Google Ads around <span class="blank">______</span>. Your leads, lead history and Google Verified badge come with you. We’ve saved your reporting history and we’ll check the account daily for the first two weeks.”</li><li><b>Budget:</b> “Your budget now shows as a daily average. Same spend, different display.”</li><li><b>Bidding:</b> “Google removed the manual bid. Here’s what we set and why: <span class="blank">______</span>.”</li><li><b>Missed calls:</b> “Last month you were charged for <span class="blank">______</span> missed calls, mostly around <span class="blank">______</span>. Here’s the fix.”</li><li><b>First report after:</b> Migration date marked, compared against the saved baseline, cost per booked job included.</li></ul>
 <h2 id="tracker">Client tracker columns</h2><p>One row per client. The PDF includes a printable grid with these columns; for a bigger roster, copy them into a sheet.</p><div class="table-wrap"><table class="compare tracker"><thead><tr><th scope="col">Client</th><th scope="col">Wave / migrated?</th><th scope="col">Admin email we watch</th><th scope="col">History archived</th><th scope="col">Budget note sent</th><th scope="col">Split decided</th><th scope="col">6 callouts</th><th scope="col">Bidding set + logged</th><th scope="col">Alerts tested</th><th scope="col">Missed-call audit</th><th scope="col">Report reconciled</th></tr></thead></table></div>
-<section class="cta-box"><h2>Want us to run this across your roster?</h2><p>Book a 30-min call. Bring your client list and we’ll go through migration status, missed-call charges and lead alerts on your accounts with you. <mark class="needs-confirm">[Ryan to confirm what the roster run includes: how many accounts, and whether it’s free.]</mark></p><div class="actions"><a class="button" href="/discovery" data-ga-event="book_meeting_click" data-ga-location="cta_box">Book a 30-min call</a><a class="button secondary" href="lsa-pmax-migration-checklist.pdf" download data-ga-event="checklist_download" data-ga-location="cta_box">Download the PDF</a></div></section>
+<section class="cta-box"><h2>Want us to run this across your roster?</h2><p>Book a 30-min call. Bring your client list and we’ll go through migration status, missed-call charges and lead alerts on your accounts with you. <mark class="needs-confirm">[Ryan to confirm what the roster run includes: how many accounts, and whether it’s free.]</mark></p><div class="actions"><a class="button" href="https://ryan.diyai.ai/30-min-discovery-call" data-cta="article-cta-book">Book a 30-min call</a><a class="button secondary" href="lsa-pmax-migration-checklist.pdf" download data-ga-event="checklist_download" data-ga-location="cta_box">Download the PDF</a></div></section>
 <h2 id="sources">Sources</h2><p>Checked against Google’s help pages on November 1, 2026. Google edits these pages often, so re-check before acting.</p><ul><li><a href="https://support.google.com/google-ads/answer/17213585" rel="noopener">LSA transition to Performance Max</a></li><li><a href="https://support.google.com/google-ads/answer/17326561" rel="noopener">Best practices for pay-per-lead goals</a></li><li><a href="https://support.google.com/google-ads/answer/17325352" rel="noopener">About goals and leads for pay-per-lead goals</a></li><li><a href="https://support.google.com/localservices/answer/7195435" rel="noopener">How leads work (missed calls)</a></li><li><a href="https://developers.google.com/google-ads/api/docs/release-notes" rel="noopener">Google Ads API release notes (v25)</a></li></ul>
 <aside class="related" aria-label="Related pages"><p class="eyebrow">Keep exploring</p><ul><li><a href="/blog/lsa-performance-max-migration-agencies/">The agency Performance Max playbook</a></li><li><a href="/blog/lsa-missed-call-charges/">Google now charges for missed calls</a></li><li><a href="/blog/google-local-services-ads-performance-max/">LSA is moving to Performance Max</a></li></ul></aside>
 <p class="article-meta">Educational content only. Google product features and policies change; verify current requirements in Google’s help center. Google and Google Local Services Ads are trademarks of Google LLC.</p>
@@ -153,8 +156,9 @@
     <p>© 2026 LSA Command. All rights reserved. Google and Google Local Service Ads are trademarks of Google LLC. We are not affiliated with Google.</p>
   </div></footer>
   <script>
+    // Download tracking only. Booking clicks (book_meeting_click) are sent by /lsa-tracking.js.
     document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[data-ga-event]');
+      var a = e.target.closest && e.target.closest('a[data-ga-event="checklist_download"]');
       if (!a || typeof gtag !== 'function') return;
       var params = { link_location: a.getAttribute('data-ga-location'), link_url: a.href, page_path: window.location.pathname };
       if (a.getAttribute('data-ga-event') === 'checklist_download') params.file_name = 'lsa-pmax-migration-checklist.pdf';
