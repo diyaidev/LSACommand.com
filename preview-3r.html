@@ -9,10 +9,13 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-CSQW3SMTL4', {
-            page_location: window.location.origin + window.location.pathname,
-            page_referrer: document.referrer.split(/[?#]/)[0]
+            // Keep campaign + ad-click params (UTMs, gclid) so GA4 can attribute traffic; drop everything else.
+            page_location: (function () { var u = new URL(window.location.href), keep = new URLSearchParams(); ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'gclid', 'gbraid', 'wbraid'].forEach(function (k) { var v = u.searchParams.get(k); if (v) keep.set(k, v); }); var q = keep.toString(); return u.origin + u.pathname + (q ? '?' + q : ''); })(),
+            page_referrer: document.referrer.split(/[?#]/)[0],
+            linker: { domains: ['lsacommand.com', 'ryan.diyai.ai'] }
         });
     </script>
+    <script src="/lsa-tracking.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LSA Command | Speed-to-Lead for Google Local Services Ads</title>
@@ -376,7 +379,7 @@
                     </a>
                     <a href="#refunds" class="glass rounded-2xl p-5 border border-white/10 flex items-start gap-3 hover:scale-[1.02] transition-transform">
                         <span class="text-neon font-black mt-0.5">✓</span>
-                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">Automatic Refunds On Bad Leads</strong>Spam, wrong-number and out-of-area disputes filed for you — money back on autopilot.</span>
+                        <span class="text-sm text-gray-400 leading-snug"><strong class="text-white block mb-0.5">Automatic Refunds On Bad Leads</strong>Every lead reviewed and rated back to Google, spam and invalid leads flagged for credit, and every credit tracked.</span>
                     </a>
                     <a href="#reviews" class="glass rounded-2xl p-5 border border-white/10 flex items-start gap-3 hover:scale-[1.02] transition-transform">
                         <span class="text-neon font-black mt-0.5">✓</span>
