@@ -4,7 +4,7 @@ Section,Metric,Where it lives in Google Ads,Sample (illustrative),This month,Las
 01 Leads received,Message leads,Goals › Conversions › Leads · Lead Type column,8,,,
 01 Leads received,Booking leads,Goals › Conversions › Leads · Lead Type column,1,,,
 01 Leads received,Total leads received,Goals › Conversions › Leads · Lead Type column,31,,,Matches the lead alerts the client saw
-02 Charged vs. credited,Charged,Leads page · Charge Status column,24,,,= Conversions on the Campaigns page
+02 Charged vs. credited,Charged,Leads page · Charge Status column,24,,,Same as Conversions on the Campaigns page
 02 Charged vs. credited,Credited,Leads page · Charge Status column,4,,,Google credited these back
 02 Charged vs. credited,In review,Leads page · Charge Status column,2,,,Can still change: see the status line
 02 Charged vs. credited,Not charged,Leads page · Charge Status column,1,,,
@@ -25,7 +25,7 @@ Section,Metric,Where it lives in Google Ads,Sample (illustrative),This month,Las
 06 Calls answered,"Missed (voicemail, no answer)","The client’s phone system, answering service or call recordings",5,,,4 of 5 after 5pm
 06 Calls answered,Answer rate,"The client’s phone system, answering service or call recordings",77%,,,The number the client controls
 07 Rating and reviews,Star rating,Google Business Profile (start vs. end of month),4.8 → 4.8,,,
-07 Rating and reviews,Review count,Google Business Profile (start vs. end of month),127 → 133,,,+6 this month
+07 Rating and reviews,Review count,Google Business Profile (start vs. end of month),127 → 133,,,6 new this month
 08 Budget pacing,Average daily budget,Campaign budget (daily average) vs. Cost for the month,$60.00,,,
 08 Budget pacing,Monthly cap (daily × 30.4),Campaign budget (daily average) vs. Cost for the month,"$1,824.00",,,
 08 Budget pacing,Spent / % of cap,Campaign budget (daily average) vs. Cost for the month,"$1,560.00 / 86%",,,"Didn’t hit the monthly max, so ads ran all month"
