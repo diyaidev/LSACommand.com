@@ -1,4 +1,16 @@
 (() => {
+ document.querySelectorAll('[data-video]').forEach(button => button.addEventListener('click', () => {
+  const player = document.createElement('video');
+  player.src = button.dataset.video;
+  player.controls = true;
+  player.playsInline = true;
+  player.preload = 'metadata';
+  player.setAttribute('aria-label', button.getAttribute('aria-label').replace(/^Play /, ''));
+  player.addEventListener('play', () => document.querySelectorAll('.video-player video').forEach(other => { if (other !== player) other.pause(); }));
+  button.replaceWith(player);
+  player.focus();
+  player.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
+ }));
  const boxes = [...document.querySelectorAll('[data-check]')];
  const key = 'lsa-setup-checklist-v1';
  const status = document.querySelector('#save-status');
