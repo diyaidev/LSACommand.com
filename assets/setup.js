@@ -1,15 +1,16 @@
 (() => {
- document.querySelectorAll('[data-video]').forEach(button => button.addEventListener('click', () => {
-  const player = document.createElement('video');
-  player.src = button.dataset.video;
-  player.controls = true;
-  player.playsInline = true;
-  player.preload = 'metadata';
-  player.setAttribute('aria-label', button.getAttribute('aria-label').replace(/^Play /, ''));
-  player.addEventListener('play', () => document.querySelectorAll('.video-player video').forEach(other => { if (other !== player) other.pause(); }));
+ let activeVideo = null;
+ document.querySelectorAll('[data-youtube]').forEach(button => button.addEventListener('click', () => {
+  if (activeVideo) activeVideo.player.replaceWith(activeVideo.button);
+  const player = document.createElement('iframe');
+  player.src = 'https://www.youtube.com/embed/' + button.dataset.youtube + '?autoplay=1&playsinline=1&rel=0';
+  player.title = button.getAttribute('aria-label').replace(/^Play /, '');
+  player.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  player.allowFullscreen = true;
+  player.referrerPolicy = 'strict-origin-when-cross-origin';
   button.replaceWith(player);
+  activeVideo = { button, player };
   player.focus();
-  player.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
  }));
  const boxes = [...document.querySelectorAll('[data-check]')];
  const key = 'lsa-setup-checklist-v1';
